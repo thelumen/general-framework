@@ -8,6 +8,7 @@ import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 
 @Component
 public class AccessUserNameFilter extends ZuulFilter {
@@ -52,6 +53,8 @@ public class AccessUserNameFilter extends ZuulFilter {
         HttpServletRequest request = ctx.getRequest();
 
         System.out.println(String.format("%s AccessUserNameFilter request to %s", request.getMethod(), request.getRequestURL().toString()));
+        // 请求参数写入监控链
+        request.getParameterMap().forEach((k,v)-> tracer.currentSpan().tag(k, Arrays.toString(v)));
 
         String username = request.getParameter("name");// 获取请求的参数
         if (null != username && !"".equals(username)) {// 如果请求的参数不为空，且值为chhliu时，则通过
