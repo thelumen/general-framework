@@ -1,17 +1,17 @@
-package com.ri.generalFramework.zipkinServer;
+package com.ri.generalFramework;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import zipkin2.server.internal.EnableZipkinServer;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 @SpringBootApplication
+@EnableZuulProxy
 @EnableEurekaClient
-@EnableZipkinServer
-public class GeneralFrameworkZipkinServerApplication {
+public class GeneralFrameworkGatewayServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GeneralFrameworkZipkinServerApplication.class, args);
+        SpringApplication.run(GeneralFrameworkGatewayServiceApplication.class, args);
     }
 
 }

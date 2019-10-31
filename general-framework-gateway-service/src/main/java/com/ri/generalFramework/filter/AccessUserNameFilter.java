@@ -1,4 +1,4 @@
-package com.ri.generalFramework.gatewayService.filter;
+package com.ri.generalFramework.filter;
 
 import brave.Tracer;
 import com.netflix.zuul.ZuulFilter;

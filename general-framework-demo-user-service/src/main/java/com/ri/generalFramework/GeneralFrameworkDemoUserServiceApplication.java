@@ -1,4 +1,4 @@
-package com.ri.generalFramework.demoUserService;
+package com.ri.generalFramework;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

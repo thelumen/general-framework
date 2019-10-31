@@ -1,4 +1,4 @@
-package com.ri.generalFramework.demoUserService.controller;
+package com.ri.generalFramework.controller;
 
 import brave.Tracer;
 import org.springframework.beans.factory.annotation.Autowired;
