@@ -3,6 +3,16 @@ package com.ri.generalFramework.util;
 public class StringUtil {
 
     /**
+     * 判斷字符串是否為空,空格为空
+     *
+     * @param str
+     * @return boolean
+     */
+    public static boolean isBlank(String str) {
+        return str == null || str.trim().equals("");
+    }
+
+    /**
      * 转换为下划线
      *
      * @param camelCaseName

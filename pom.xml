@@ -28,6 +28,7 @@
     </properties>
 
     <dependencies>
+        <!-- 项目工具类 -->
         <dependency>
             <groupId>com.ri</groupId>
             <artifactId>general-framework-util</artifactId>
