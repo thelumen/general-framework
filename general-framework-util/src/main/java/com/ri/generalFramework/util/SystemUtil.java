@@ -79,7 +79,7 @@ public class SystemUtil {
     /**
      * 删除指定路径的文件
      *
-     * @param path
+     * @param path 路径
      * @return boolean 删除成功返回true，删除失败返回false
      */
     public static boolean deleteFile(String path) {
