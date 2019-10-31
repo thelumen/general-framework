@@ -54,7 +54,7 @@ public class AccessUserNameFilter extends ZuulFilter {
 
         System.out.println(String.format("%s AccessUserNameFilter request to %s", request.getMethod(), request.getRequestURL().toString()));
         // 请求参数写入监控链
-        request.getParameterMap().forEach((k,v)-> tracer.currentSpan().tag(k, Arrays.toString(v)));
+        request.getParameterMap().forEach((k, v) -> tracer.currentSpan().tag(k, getStringFromArray(v)));
 
         String username = request.getParameter("name");// 获取请求的参数
         if (null != username && !"".equals(username)) {// 如果请求的参数不为空，且值为chhliu时，则通过
@@ -69,5 +69,16 @@ public class AccessUserNameFilter extends ZuulFilter {
             ctx.setResponseBody("{\"result\":\"username is not correct!\"}");// 返回错误内容
             return null;
         }
+    }
+
+    /**
+     * 格式化字符串数组
+     *
+     * @param s 字符串数组
+     * @return 格式化字符串
+     */
+    private String getStringFromArray(String[] s) {
+        int l = s.length;
+        return l == 0 ? null : l == 1 ? s[0] : Arrays.toString(s);
     }
 }
