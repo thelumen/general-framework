@@ -7,6 +7,9 @@ import org.apache.commons.logging.LogFactory;
 import javax.servlet.http.HttpServletRequest;
 import java.util.UUID;
 
+import static com.ri.generalFramework.constants.Trace.DataID;
+import static com.ri.generalFramework.constants.Trace.TraceID;
+
 /**
  * 全链路日志跟踪工具类
  */
@@ -49,10 +52,10 @@ public final class TraceIdUtils {
         Object obj = getTraceId();
         Object obj2 = getDataId();
         if (null != obj)
-            requestTemplate.header("trace_id", obj.toString());
+            requestTemplate.header(TraceID.name(), obj.toString());
 
         if (null != obj2)
-            requestTemplate.header("data_id", obj2.toString());
+            requestTemplate.header(DataID.name(), obj2.toString());
     }
 
     /***
@@ -60,9 +63,8 @@ public final class TraceIdUtils {
      */
     public static void transferTraceId(HttpServletRequest request) {
         // 兼容服务之间传递使用header传递数据-start
-        Object obj = request.getHeader("trace_id");//跟踪ID
-        Object obj2 = request.getHeader("data_id");//跟踪ID
-        log.info(obj);
+        Object obj = request.getHeader(TraceID.name());//跟踪ID
+        Object obj2 = request.getHeader(DataID.name());//跟踪ID
         if (null != obj)
             threadLocal_1.set(obj);
         if (null != obj2)

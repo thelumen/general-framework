@@ -22,11 +22,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.UUID;
 
+import static com.ri.generalFramework.constants.Trace.TraceID;
 import static com.ri.generalFramework.util.GatewayFilterUtil.*;
 
 public class RequestTimeFilter implements GatewayFilter, Ordered {
@@ -54,7 +52,7 @@ public class RequestTimeFilter implements GatewayFilter, Ordered {
         HttpHeaders headers = new HttpHeaders();
         headers.putAll(oldRequest.getHeaders());
         // 添加消息头
-        headers.set("TraceId", traceID);
+        headers.set(TraceID.name(), traceID);
         // 设置CONTENT_TYPE
         if (StringUtils.isNotBlank(contentType)) {
             headers.set(HttpHeaders.CONTENT_TYPE, contentType);
