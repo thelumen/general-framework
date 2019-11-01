@@ -22,6 +22,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.UUID;
 
 import static com.ri.generalFramework.util.GatewayFilterUtil.*;
@@ -80,7 +83,7 @@ public class RequestTimeFilter implements GatewayFilter, Ordered {
             headers.setContentLength(length);
 
             // 由于post的body只能订阅一次，由于上面代码中已经订阅过一次body。所以要再次封装请求到request才行，不然会报错请求已经订阅过
-            request = reBuildRequest(request, headers.getContentLength(), bodyFlux);
+            request = reBuildRequest(request, headers, bodyFlux);
             //封装request，传给下一级
             request.mutate().header(HttpHeaders.CONTENT_LENGTH, Integer.toString(bodyStr.length()));
             return chain.filter(exchange.mutate().request(request).build()).then(Mono.fromRunnable(getRunnable(exchange)));
@@ -89,10 +92,10 @@ public class RequestTimeFilter implements GatewayFilter, Ordered {
             headers.setContentLength(0);
             URI newUri = UriComponentsBuilder.fromUri(uri).build(true).toUri();
             ServerHttpRequest request = oldRequest.mutate().uri(newUri).build();
-            request = reBuildRequest(request, headers.getContentLength());
+            request = reBuildRequest(request, headers);
             return chain.filter(exchange.mutate().request(request).build()).then(Mono.fromRunnable(getRunnable(exchange)));
         }
-        return chain.filter(exchange);
+        return chain.filter(exchange).then(Mono.fromRunnable(getRunnable(exchange)));
     }
 
     @Override

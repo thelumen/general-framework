@@ -32,5 +32,4 @@ spring:
           filters:
             # \u622A\u65AD\u8BF7\u6C42\u8DEF\u5F84\u6570\u91CF
             - StripPrefix= 2
-            - AddRequestHeader=X-Request-Foo, Bar
             - RequestTime=true

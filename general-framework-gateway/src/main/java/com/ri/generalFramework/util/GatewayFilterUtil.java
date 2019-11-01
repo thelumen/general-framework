@@ -50,16 +50,16 @@ public class GatewayFilterUtil {
     /**
      * 重新构建 Request
      *
-     * @param request       原请求
-     * @param contentLength 内容 长度
-     * @param bodyFlux      请求 body
+     * @param request     原请求
+     * @param httpHeaders 请求 head
+     * @param bodyFlux    请求 body
      * @return 重构后的request
      */
-    public static ServerHttpRequest reBuildRequest(ServerHttpRequest request, long contentLength, Flux<DataBuffer> bodyFlux) {
+    public static ServerHttpRequest reBuildRequest(ServerHttpRequest request, HttpHeaders httpHeaders, Flux<DataBuffer> bodyFlux) {
         return new ServerHttpRequestDecorator(request) {
             @Override
             public HttpHeaders getHeaders() {
-                HttpHeaders httpHeaders = new HttpHeaders();
+                long contentLength = httpHeaders.getContentLength();
                 httpHeaders.putAll(super.getHeaders());
                 if (contentLength > 0) {
                     httpHeaders.setContentLength(contentLength);
@@ -79,15 +79,15 @@ public class GatewayFilterUtil {
     /**
      * 重新构建 Request
      *
-     * @param request       原请求
-     * @param contentLength 内容 长度
+     * @param request     原请求
+     * @param httpHeaders 请求 head
      * @return 重构后的request
      */
-    public static ServerHttpRequest reBuildRequest(ServerHttpRequest request, long contentLength) {
+    public static ServerHttpRequest reBuildRequest(ServerHttpRequest request, HttpHeaders httpHeaders) {
         return new ServerHttpRequestDecorator(request) {
             @Override
             public HttpHeaders getHeaders() {
-                HttpHeaders httpHeaders = new HttpHeaders();
+                long contentLength = httpHeaders.getContentLength();
                 httpHeaders.putAll(super.getHeaders());
                 if (contentLength > 0) {
                     httpHeaders.setContentLength(contentLength);
@@ -98,4 +98,5 @@ public class GatewayFilterUtil {
             }
         };
     }
+
 }

@@ -1,6 +1,8 @@
 package com.ri.generalFramework.util;
 
 import feign.RequestTemplate;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.UUID;
@@ -9,6 +11,9 @@ import java.util.UUID;
  * 全链路日志跟踪工具类
  */
 public final class TraceIdUtils {
+
+    private static final Log log = LogFactory.getLog(TraceIdUtils.class);
+
     private static ThreadLocal<Object> threadLocal_1 = new ThreadLocal<>();
     private static ThreadLocal<Object> threadLocal_2 = new ThreadLocal<>();
 
@@ -57,6 +62,7 @@ public final class TraceIdUtils {
         // 兼容服务之间传递使用header传递数据-start
         Object obj = request.getHeader("trace_id");//跟踪ID
         Object obj2 = request.getHeader("data_id");//跟踪ID
+        log.info(obj);
         if (null != obj)
             threadLocal_1.set(obj);
         if (null != obj2)
