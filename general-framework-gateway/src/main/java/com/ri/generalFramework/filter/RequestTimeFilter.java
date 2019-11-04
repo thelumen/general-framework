@@ -52,7 +52,7 @@ public class RequestTimeFilter implements GatewayFilter, Ordered {
         HttpHeaders headers = new HttpHeaders();
         headers.putAll(oldRequest.getHeaders());
         // 添加消息头
-        headers.set(TraceID.name(), traceID);
+        headers.set(TraceID.getID(), traceID);
         // 设置CONTENT_TYPE
         if (StringUtils.isNotBlank(contentType)) {
             headers.set(HttpHeaders.CONTENT_TYPE, contentType);
@@ -87,7 +87,6 @@ public class RequestTimeFilter implements GatewayFilter, Ordered {
             return chain.filter(exchange.mutate().request(request).build()).then(Mono.fromRunnable(getRunnable(exchange)));
         } else if (method == HttpMethod.GET) {
             headers.remove(HttpHeaders.CONTENT_LENGTH);
-            headers.setContentLength(0);
             URI newUri = UriComponentsBuilder.fromUri(uri).build(true).toUri();
             ServerHttpRequest request = oldRequest.mutate().uri(newUri).build();
             request = reBuildRequest(request, headers);

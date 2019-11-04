@@ -5,9 +5,13 @@ public enum Trace {
     DataID("DataId")
     ;
 
-    private String traceId;
+    private String ID;
 
-    Trace(String traceId) {
-        this.traceId = traceId;
+    Trace(String ID) {
+        this.ID = ID;
+    }
+
+    public String getID() {
+        return ID;
     }
 }

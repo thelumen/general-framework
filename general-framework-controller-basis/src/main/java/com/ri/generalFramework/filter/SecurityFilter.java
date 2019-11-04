@@ -7,9 +7,6 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-/**
- * Created by lenovo on 2017/4/17.
- */
 public class SecurityFilter implements Filter {
 
 
@@ -20,7 +17,7 @@ public class SecurityFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-
+        // 获取请求头中的 traceID
         TraceIdUtils.transferTraceId((HttpServletRequest) servletRequest);
         filterChain.doFilter(servletRequest, servletResponse);
     }

@@ -52,10 +52,10 @@ public final class TraceIdUtils {
         Object obj = getTraceId();
         Object obj2 = getDataId();
         if (null != obj)
-            requestTemplate.header(TraceID.name(), obj.toString());
+            requestTemplate.header(TraceID.getID(), obj.toString());
 
         if (null != obj2)
-            requestTemplate.header(DataID.name(), obj2.toString());
+            requestTemplate.header(DataID.getID(), obj2.toString());
     }
 
     /***
@@ -63,8 +63,8 @@ public final class TraceIdUtils {
      */
     public static void transferTraceId(HttpServletRequest request) {
         // 兼容服务之间传递使用header传递数据-start
-        Object obj = request.getHeader(TraceID.name());//跟踪ID
-        Object obj2 = request.getHeader(DataID.name());//跟踪ID
+        Object obj = request.getHeader(TraceID.getID());//跟踪ID
+        Object obj2 = request.getHeader(DataID.getID());//跟踪ID
         if (null != obj)
             threadLocal_1.set(obj);
         if (null != obj2)

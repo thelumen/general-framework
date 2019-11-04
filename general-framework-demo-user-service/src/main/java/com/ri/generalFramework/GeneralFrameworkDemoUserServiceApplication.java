@@ -18,8 +18,7 @@ public class GeneralFrameworkDemoUserServiceApplication {
 
 
     @Bean
-    public FilterRegistrationBean rsaFilterRegistrationBean() {
-
+    public FilterRegistrationBean filterRegistrationBean() {
         FilterRegistrationBean<SecurityFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setName("securityFilter");
         SecurityFilter securityFilter = new SecurityFilter();

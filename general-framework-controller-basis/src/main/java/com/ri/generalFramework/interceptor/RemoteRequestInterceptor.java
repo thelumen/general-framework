@@ -5,7 +5,7 @@ import feign.RequestInterceptor;
 import feign.RequestTemplate;
 
 /**
- * 远程调用的拦截器
+ * Feign 调用的拦截器
  */
 public class RemoteRequestInterceptor implements RequestInterceptor {
 
