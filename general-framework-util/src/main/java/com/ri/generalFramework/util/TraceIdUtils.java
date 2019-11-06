@@ -82,20 +82,19 @@ public final class TraceIdUtils {
     /***
      * 记住要调用删除，反之线程的内存溢出
      */
-    public static void removeTraceId() {
-        LogTextUtils logTextUtils = LogTextUtils.getLogger();
+    public static Object removeTraceId() {
         Object obj = getTraceId();
         if (null != obj) {
             threadLocal_1.remove();
-            logTextUtils.writeInfo("traceid removed: " + obj);
+            log.info("traceId removed: " + obj);
         }
 
         Object obj2 = getDataId();
         if (null != obj2) {
             threadLocal_2.remove();
-            logTextUtils.writeInfo("dataid removed: " + obj2);
+            log.info("dataId removed: " + obj2);
         }
 
-
+        return obj;
     }
 }

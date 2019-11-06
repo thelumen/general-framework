@@ -10,6 +10,7 @@
         <module>general-framework-register-center</module>
         <module>general-framework-zipkin-server</module>
         <module>general-framework-util</module>
+        <module>general-framework-controller-basis</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -34,6 +35,12 @@
             <artifactId>general-framework-util</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <!-- 项目实体类 -->
+<!--        <dependency>-->
+<!--            <groupId>com.ri</groupId>-->
+<!--            <artifactId>general-framework-model-basis</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

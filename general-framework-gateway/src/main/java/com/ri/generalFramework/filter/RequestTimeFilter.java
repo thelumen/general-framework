@@ -1,6 +1,7 @@
 package com.ri.generalFramework.filter;
 
 import com.ri.generalFramework.filterFactory.RequestTimeGatewayFilterFactory;
+import com.ri.generalFramework.util.ListUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -22,6 +23,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 import static com.ri.generalFramework.constants.Trace.TraceID;
@@ -48,6 +52,7 @@ public class RequestTimeFilter implements GatewayFilter, Ordered {
         URI uri = oldRequest.getURI();
         HttpMethod method = oldRequest.getMethod();
         String traceID = UUID.randomUUID().toString().replaceAll("-", "");
+        log.info(TraceID.getID() + " : " + traceID);
         // 定义新的消息头
         HttpHeaders headers = new HttpHeaders();
         headers.putAll(oldRequest.getHeaders());
@@ -113,9 +118,15 @@ public class RequestTimeFilter implements GatewayFilter, Ordered {
                 StringBuilder sb = new StringBuilder(exchange.getRequest().getURI().getRawPath())
                         .append(": ")
                         .append(System.currentTimeMillis() - startTime)
-                        .append("ms");
+                        .append("ms")
+                        .append(" params:")
+                        .append(exchange.getRequest().getQueryParams());
                 if (config.isWithParams()) {
-                    sb.append(" params:").append(exchange.getRequest().getQueryParams());
+                    HttpHeaders headers = exchange.getResponse().getHeaders();
+                    List<String> stringList = headers.get(TraceID.getID());
+                    if (ListUtil.checkListNotEmpty(stringList)) {
+                        sb.append(" traceID:").append(Arrays.toString(stringList.toArray()));
+                    }
                 }
                 log.info(sb.toString());
             }

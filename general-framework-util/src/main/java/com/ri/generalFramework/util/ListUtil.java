@@ -11,7 +11,7 @@ public class ListUtil {
      * @param collection collection
      * @return boolean
      */
-    private boolean checkListNotEmpty(Collection<?> collection) {
+    public static boolean checkListNotEmpty(Collection<?> collection) {
         return !checkListIsEmpty(collection);
     }
 
@@ -20,7 +20,7 @@ public class ListUtil {
      * @param collection collection
      * @return boolean
      */
-    private boolean checkListIsEmpty(Collection<?> collection) {
+    public static boolean checkListIsEmpty(Collection<?> collection) {
         if (collection == null)
             return true;
         // 剔除 collection 中的空元素

@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class GeneralFrameworkGatewayApplication {
+public class GatewayApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GeneralFrameworkGatewayApplication.class, args);
+        SpringApplication.run(GatewayApplication.class, args);
     }
 
     @Bean

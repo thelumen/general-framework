@@ -10,15 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
-public class GeneralFrameworkDemoUserServiceApplication {
+public class DemoUserServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GeneralFrameworkDemoUserServiceApplication.class, args);
+        SpringApplication.run(DemoUserServiceApplication.class, args);
     }
 
 
     @Bean
-    public FilterRegistrationBean filterRegistrationBean() {
+    public FilterRegistrationBean securityFilterRegistrationBean() {
         FilterRegistrationBean<SecurityFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setName("securityFilter");
         SecurityFilter securityFilter = new SecurityFilter();
