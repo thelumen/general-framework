@@ -12,7 +12,7 @@
         <module>general-framework-zipkin-server</module>
         <module>general-framework-util</module>
         <module>general-framework-controller-basis</module>
-        <module>general-framework-sso-service</module>
+        <module>general-framework-sso-center</module>
         <module>general-framework-gateway</module>
     </modules>
     <parent>

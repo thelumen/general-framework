@@ -1,13 +1,13 @@
-package com.ri.gengeralFramework;
+package com.ri.generalFramework;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GengeralFrameworkSsoServiceApplication {
+public class GeneralFrameworkSsoCenterApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GengeralFrameworkSsoServiceApplication.class, args);
+        SpringApplication.run(GeneralFrameworkSsoCenterApplication.class, args);
     }
 
 }

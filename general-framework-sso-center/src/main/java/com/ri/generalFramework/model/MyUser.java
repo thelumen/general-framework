@@ -1,4 +1,4 @@
-package com.ri.gengeralFramework.model;
+package com.ri.generalFramework.model;
 
 import java.io.Serializable;
 

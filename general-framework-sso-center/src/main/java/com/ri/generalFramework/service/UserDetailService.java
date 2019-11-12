@@ -1,6 +1,6 @@
-package com.ri.gengeralFramework.service;
+package com.ri.generalFramework.service;
 
-import com.ri.gengeralFramework.model.MyUser;
+import com.ri.generalFramework.model.MyUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.authority.AuthorityUtils;

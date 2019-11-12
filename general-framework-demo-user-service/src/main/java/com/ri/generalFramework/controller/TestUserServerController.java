@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/test")
 public class TestUserServerController {
@@ -18,5 +20,10 @@ public class TestUserServerController {
     public String sayHi(String name) {
         tracer.currentSpan().tag("result", "Hi " + name);
         return "Hi " + name + " " + TraceIdUtils.getTraceId();
+    }
+
+    @GetMapping("user")
+    public Principal user(Principal principal) {
+        return principal;
     }
 }

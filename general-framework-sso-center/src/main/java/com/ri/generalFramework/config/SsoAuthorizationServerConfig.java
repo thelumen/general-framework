@@ -1,6 +1,6 @@
-package com.ri.gengeralFramework.config;
+package com.ri.generalFramework.config;
 
-import com.ri.gengeralFramework.service.UserDetailService;
+import com.ri.generalFramework.service.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,15 +40,19 @@ public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerA
         clients.inMemory()
                 .withClient("app-a")
                 .secret(passwordEncoder.encode("app-a-1234"))
-                .authorizedGrantTypes("refresh_token", "authorization_code")
+                .authorizedGrantTypes("refresh_token","authorization_code")
                 .accessTokenValiditySeconds(3600)
                 .scopes("all")
+                .autoApprove(true)
+                .redirectUris("http://127.0.0.1:8762/app1/login")
         .and()
                 .withClient("app-b")
                 .secret(passwordEncoder.encode("app-b-1234"))
-                .authorizedGrantTypes("refresh_token", "authorization_code")
+                .authorizedGrantTypes("refresh_token","authorization_code")
                 .accessTokenValiditySeconds(7200)
-                .scopes("all");
+                .scopes("all")
+                .autoApprove(true)
+                .redirectUris("http://127.0.0.1:8763/app2/login");
     }
 
     @Override
