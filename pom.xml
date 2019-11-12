@@ -6,6 +6,7 @@
     <modules>
         <module>general-framework-model-basis</module>
         <module>general-framework-demo-user-service</module>
+        <module>general-framework-demo-user-service-B</module>
         <module>general-framework-zuul-service</module>
         <module>general-framework-register-center</module>
         <module>general-framework-zipkin-server</module>
