@@ -1,6 +1,6 @@
 package com.ri.generalFramework;
 
-import com.ri.generalFramework.filter.SecurityFilter;
+import com.ri.generalFramework.filter.TraceFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -16,13 +16,12 @@ public class DemoUserServiceApplication {
         SpringApplication.run(DemoUserServiceApplication.class, args);
     }
 
-
     @Bean
     public FilterRegistrationBean securityFilterRegistrationBean() {
-        FilterRegistrationBean<SecurityFilter> registrationBean = new FilterRegistrationBean<>();
-        registrationBean.setName("securityFilter");
-        SecurityFilter securityFilter = new SecurityFilter();
-        registrationBean.setFilter(securityFilter);
+        FilterRegistrationBean<TraceFilter> registrationBean = new FilterRegistrationBean<>();
+        registrationBean.setName("traceFilter");
+        TraceFilter traceFilter = new TraceFilter();
+        registrationBean.setFilter(traceFilter);
         registrationBean.setOrder(1);
         List<String> urlList = new ArrayList<>();
         urlList.add("/*");

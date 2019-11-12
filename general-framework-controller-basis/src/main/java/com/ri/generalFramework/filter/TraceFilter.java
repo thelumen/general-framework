@@ -7,7 +7,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-public class SecurityFilter implements Filter {
+public class TraceFilter implements Filter {
 
 
     @Override

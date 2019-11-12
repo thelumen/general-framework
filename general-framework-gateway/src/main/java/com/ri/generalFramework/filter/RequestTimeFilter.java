@@ -79,12 +79,10 @@ public class RequestTimeFilter implements GatewayFilter, Ordered {
             ServerHttpRequest request = oldRequest.mutate().uri(newUri).build();
             DataBuffer bodyDataBuffer = stringBuffer(bodyStr);
             Flux<DataBuffer> bodyFlux = Flux.just(bodyDataBuffer);
-
             // 由于修改了传递参数，需要重新设置CONTENT_LENGTH，长度是字节长度，不是字符串长度
             int length = bodyStr.getBytes().length;
             headers.remove(HttpHeaders.CONTENT_LENGTH);
             headers.setContentLength(length);
-
             // 由于post的body只能订阅一次，由于上面代码中已经订阅过一次body。所以要再次封装请求到request才行，不然会报错请求已经订阅过
             request = reBuildRequest(request, headers, bodyFlux);
             //封装request，传给下一级

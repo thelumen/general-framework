@@ -25,7 +25,7 @@ spring:
           # 开启通过服务中心的自动根据 serviceId 创建路由的功能
           enabled: true
       routes:
-        - id: add_request_header_route
+        - id: demo_user_route
           uri: lb://demo-user-service
           predicates:
             - Path= /api/user/**
@@ -33,3 +33,5 @@ spring:
             # 截断请求路径数量
             - StripPrefix= 2
             - RequestTime=true
+
+---
